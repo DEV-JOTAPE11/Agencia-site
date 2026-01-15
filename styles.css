@@ -1,0 +1,258 @@
+/* --- RESET --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* --- VARIAVEIS DE TEMA --- */
+:root {
+  --bg-primary: #000000;
+  --text-primary: #ffffff;
+  --header-border: rgba(255, 255, 255, 0.1);
+  --gradient-overlay: radial-gradient(
+    125% 125% at 50% 10%,
+    #000000 40%,
+    #010133 100%
+  );
+}
+
+body.light-mode {
+  --bg-primary: #f0f2f5;
+  --text-primary: #010528;
+  --header-border: rgba(0, 0, 0, 0.1);
+  --gradient-overlay: none;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.main-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.azure-depths-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--gradient-overlay);
+  transition: opacity 0.5s;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  padding: 0 20px;
+  padding-top: 120px; /* Compensa o header fixo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+/* --- HEADER FIXO TRANSPARENTE --- */
+.glass-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid var(--header-border);
+  transition: border-color 0.3s;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 102; /* Garante que botões fiquem acima do overlay */
+}
+
+/* --- LOGO & NAV DESKTOP --- */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Configuração Geral para AMBAS as imagens (Tamanho) */
+.logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+/* --- LÓGICA DE TROCA (MÁGICA AQUI) --- */
+
+.img-light {
+  display: none;
+}
+.img-dark {
+  display: block;
+}
+
+/* 2. Quando o body tem a classe 'light-mode': */
+body.light-mode .img-light {
+  display: block;
+}
+
+body.light-mode .img-dark {
+  display: none;
+}
+
+/* Ajuste para Mobile */
+@media (max-width: 768px) {
+  .logo img {
+    height: 40px;
+  }
+}
+
+.desktop-nav {
+  display: none;
+  gap: 20px;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: var(--text-primary);
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.desktop-nav a:hover {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+/* --- BOTÕES & CONTROLES --- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- MENU HAMBURGUER (ANIMAÇÃO) --- */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+  z-index: 103;
+}
+
+.bar {
+  display: block;
+  height: 3px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.bar:nth-child(1) {
+  width: 100%;
+  transform-origin: center;
+}
+.bar:nth-child(2) {
+  width: 100%;
+}
+.bar:nth-child(3) {
+  width: 50%;
+  align-self: flex-end;
+  transform-origin: center;
+}
+
+/* Estado 'Open' (Forma de X) */
+.hamburger-btn.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburger-btn.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.open .bar:nth-child(3) {
+  width: 100%;
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+@media (min-width: 768px) {
+  .hamburger-btn {
+    display: none;
+  }
+}
+
+/* --- MENU MOBILE OVERLAY (TELA CHEIA) --- */
+.mobile-menu-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  /* Fundo Dark com Blur */
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  /* Transições de Entrada */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 101;
+}
+
+.mobile-menu-content.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-content a {
+  text-decoration: none;
+  color: #ffffff; /* Sempre branco */
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  transition: color 0.3s;
+}
+
+.mobile-menu-content a:hover {
+  color:  #0a0a6b;
+}
