@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.getElementById('mobile-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
+    const header = document.querySelector('.glass-header');
+
+    window.addEventListener('scroll', () => {
+        // Se rolar mais de 50px para baixo, adiciona a classe. Se não, remove.
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }); 
+
     // --- LÓGICA DE TEMA (DARK/LIGHT) ---
     themeToggleBtn.addEventListener('click', () => {
         body.classList.toggle('light-mode');

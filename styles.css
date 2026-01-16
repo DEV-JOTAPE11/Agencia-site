@@ -6,6 +6,10 @@
   font-family: "Inter", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* --- VARIAVEIS DE TEMA --- */
 :root {
   --bg-primary: #000000;
@@ -17,6 +21,9 @@
     #010133 100%
   );
 }
+
+/* --- RESET PARA LINKS SEM CLASSE E SEM ID --- */
+
 
 body.light-mode {
   --bg-primary: #f0f2f5;
@@ -81,6 +88,21 @@ body.light-mode {
   z-index: 102; /* Garante que botões fiquem acima do overlay */
 }
 
+.glass-header.scrolled {
+  background: rgba(0, 0, 0, 0.4); /* Fundo preto transparente */
+  backdrop-filter: blur(12px);    /* O desfoque (blur) */
+  -webkit-backdrop-filter: blur(12px); /* Para Safari */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+body.light-mode .glass-header.scrolled {
+  background: rgba(255, 255, 255, 0.8); /* Fundo branco transparente */
+}
+
+.glass-header {
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.3s;
+}
+
 /* --- LOGO & NAV DESKTOP --- */
 
 .logo {
@@ -115,11 +137,401 @@ body.light-mode .img-dark {
   display: none;
 }
 
+/* --- HERO SECTION REFORMULADA --- */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 40px; /* Ajuste fino do espaço topo */
+  animation: fadeUp 0.8s ease-out;
+}
+
+/* 1. Logo Central */
+.hero-logo-container {
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-main-logo {
+  height: 80px; /* Tamanho da logo no centro */
+  width: auto;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
+
+/* Efeito de "Glow" azul atrás da logo */
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 75, 142, 0.6) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  z-index: 1;
+  border-radius: 50%;
+}
+
+/* --- 2. Badges (Prova Social Separados) --- */
+.hero-badges {
+  display: flex;
+  justify-content: center; /* Centraliza os dois */
+  align-items: center;
+  gap: 15px; /* Espaço entre os dois badges */
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* Garante que não quebre em telas muito pequenas */
+}
+
+/* Estilo Base para os Itens */
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* === ESTILO 1: AVALIAÇÕES (DOURADO) === */
+.badge-gold {
+  /* Gradiente Dourado */
+  background-color: rgba(253, 185, 49, 0.3);
+  color: #fff; /* Texto preto para contraste no dourado */
+  border: 1px solid #ffe680;
+}
+
+.badge-gold:hover {
+  transform: translateY(-3px) scale(1.05); /* Sobe e aumenta um pouco */
+  box-shadow: 0 6px 20px rgba(253, 185, 49, 0.5);
+  cursor: pointer;
+}
+
+.google-icon {
+  font-family: "Inter", sans-serif; /* Ou sua fonte padrão */
+  font-weight: 900;
+}
+
+.stars {
+  color: #ffd700;
+  letter-spacing: 1px;
+}
+
+/* === ESTILO 2: AGÊNCIA (VIDRO + BOLINHA AZUL) === */
+.badge-glass {
+  background: rgba(255, 255, 255, 0.03); /* Fundo bem transparente */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+}
+
+/* A Bolinha Azul */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #0077ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #0077ff;
+  animation: pulse-blue 2s infinite;
+}
+
+/* Animação suave na bolinha */
+@keyframes pulse-blue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 201, 167, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(0, 201, 167, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 201, 167, 0);
+  }
+}
+
+/* 3. Título Principal */
+.hero-title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+/* Gradiente no texto "Profissionais" */
+.highlight-text {
+  background: linear-gradient(90deg, #b2fefa 0%, #004b8e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 4. Descrição */
+.hero-description {
+  color: #a1a1aa; /* Cinza claro */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+/* 5. Botões */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- ESTILO DOS BOTÕES E ÍCONES --- */
+.btn {
+  /* Garante que o texto e o ícone fiquem lado a lado centralizados */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  text-decoration: none; /* Caso use tag <a> */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 75, 142, 0.3);
+}
+
+/* Tamanho e Cor dos SVGs dentro dos botões */
+.btn svg {
+  width: 20px; /* Tamanho ideal para botões */
+  height: 20px;
+  fill: currentColor; /* Pega a cor do texto (branco ou preto) automaticamente */
+  transition: transform 0.3s ease;
+}
+
+/* Efeito extra: Ícone move levemente no hover */
+.btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Mantendo as cores que já definimos antes */
+.btn-primary {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 75, 142, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 6. Estatísticas (Stats) */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #71717a;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 7. Scroll Indicator */
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: #71717a; 
+    font-size: 0.8rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    
+    
+    text-decoration: none; 
+    transition: color 0.3s; 
+}
+
+.scroll-indicator:hover {
+    color: #ffffff; 
+}
+
+
+
+
+
+
+/* --- BOTÃO FLUTUANTE WHATSAPP --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 64px;  /* Tamanho do botão */
+    height: 64px;
+    /* Cor Azul Ciano Claro para destacar do fundo escuro */
+    background-color: #007eec; 
+    color: white; /* Cor do ícone */
+    border-radius: 50%; /* Redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 201, 167, 0.5); /* Sombra brilhante */
+    z-index: 1000; /* Fica acima de tudo */
+    transition: all 0.3s ease;
+}
+
+/* Tamanho do ícone SVG dentro do botão */
+.whatsapp-float svg {
+    width: 38px;
+    height: 38px;
+    fill: currentColor;
+}
+
+/* Efeito ao passar o mouse */
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Aumenta um pouco */
+    background-color: #20E3B2; /* Fica ligeiramente mais claro */
+}
+
+/* --- ANIMAÇÃO DE "PULSO" --- */
+/* Cria um anel que se expande atrás do botão */
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #00C9A7; /* Mesma cor do botão */
+    opacity: 0.6;
+    z-index: -1; /* Fica atrás do botão principal */
+    animation: pulse-ring 2s infinite; /* Animação infinita de 2 segundos */
+}
+
+/* Os passos da animação */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.6); /* Expands to 1.6x do tamanho */
+        opacity: 0; /* Desaparece */
+    }
+}
+
+/* Animações */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+
+
 /* Ajuste para Mobile */
 @media (max-width: 768px) {
   .logo img {
     height: 40px;
   }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-stats {
+    gap: 15px;
+  }
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+  }
+
+   .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 58px;
+        height: 58px;
+    }
+    .whatsapp-float svg {
+        width: 34px;
+        height: 34px;
+    }
 }
 
 .desktop-nav {
@@ -247,12 +659,12 @@ body.light-mode .img-dark {
 .mobile-menu-content a {
   text-decoration: none;
   color: #ffffff; /* Sempre branco */
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -1px;
   transition: color 0.3s;
 }
 
 .mobile-menu-content a:hover {
-  color:  #0a0a6b;
+  color: #0a0a6b;
 }
