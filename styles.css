@@ -395,6 +395,7 @@ body.light-mode .img-dark {
 
   text-decoration: none;
   transition: color 0.3s;
+  margin-bottom: 3rem;
 }
 
 .scroll-indicator:hover {
@@ -531,6 +532,103 @@ body.light-mode .img-dark {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* --- BOTÃO VER TODOS OS SERVIÇOS --- */
+.view-all-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; 
+}
+
+.btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 32px;
+    
+    /* Estilo "Pílula" com borda sutil */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    background: transparent;
+    
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    
+  
+    transition: all 0.3s ease;
+}
+
+.btn-view-all svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease; 
+}
+
+/* --- EFEITO HOVER  --- */
+.btn-view-all:hover {
+   
+    border-color: #00C9A7;
+    background: rgba(0, 201, 167, 0.05); 
+    box-shadow: 0 0 20px rgba(0, 201, 167, 0.2); 
+    color: #00C9A7;
+}
+
+.btn-view-all:hover svg {
+    transform: translateX(6px);
+    stroke: #00C9A7; 
+}
+
+/* --- AJUSTE PARA MODO CLARO (Light Mode) --- */
+body.light-mode .btn-view-all {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #010528;
+}
+
+body.light-mode .btn-view-all:hover {
+    border-color: #004B8E;
+    color: #004B8E;
+    background: rgba(0, 75, 142, 0.05);
+}
+
+body.light-mode .btn-view-all:hover svg {
+    stroke: #004B8E;
+}
+
+/* --- AJUSTES PARA MODO CLARO --- */
+body.light-mode .services-section {
+    background: radial-gradient(125% 125% at 50% 100%, #f0f2f5 40%, transparent 100%);
+}
+
+
+body.light-mode .service-card {
+    background-color: #ffffff; 
+    border-color: rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+}
+
+
+body.light-mode .card-title {
+    color: #010528; 
+}
+
+body.light-mode .card-text,
+body.light-mode .section-description {
+    color: #555560; 
+}
+
+
+body.light-mode .service-card.popular {
+    /* Gradiente suave azulado sobre fundo branco */
+    background: linear-gradient(180deg, rgba(0, 75, 142, 0.05) 0%, #ffffff 100%);
+    border: 1px solid #004B8E;
+}
+
+/* 5. Ajuste dos Ícones (Fundo mais suave) */
+body.light-mode .card-icon {
+    background: rgba(0, 75, 142, 0.1); /* Azul bem clarinho no fundo do ícone */
+}
 
 
 
