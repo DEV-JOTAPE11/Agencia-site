@@ -620,15 +620,217 @@ body.light-mode .section-description {
 
 
 body.light-mode .service-card.popular {
-    /* Gradiente suave azulado sobre fundo branco */
+
     background: linear-gradient(180deg, rgba(0, 75, 142, 0.05) 0%, #ffffff 100%);
     border: 1px solid #004B8E;
 }
 
 /* 5. Ajuste dos Ícones (Fundo mais suave) */
 body.light-mode .card-icon {
-    background: rgba(0, 75, 142, 0.1); /* Azul bem clarinho no fundo do ícone */
+    background: rgba(0, 75, 142, 0.1); 
 }
+
+
+
+
+/* --- SEÇÃO PROJETOS --- */
+.projects-section {
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #000000; /* Fundo Preto Puro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Container do Carrossel */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Área dos Cards (Track) */
+.projects-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Colunas no Desktop */
+    gap: 30px;
+    width: 100%;
+    padding: 10px; /* Espaço para shadow não cortar */
+}
+
+/* --- ESTILO DO CARD DE PROJETO --- */
+.project-card {
+    background-color: #0a0a0c; /* Fundo do card (quase preto) */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden; /* Para a imagem não sair da borda */
+    text-decoration: none;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: #004B8E; /* Borda azul no hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Imagem do Projeto */
+.card-image {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta a imagem sem esticar */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-image img {
+    transform: scale(1.05); /* Zoom leve na imagem ao passar o mouse */
+}
+
+/* Conteúdo do Card */
+.card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Tags com Ponto Azul */
+.project-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.tag-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #004B8E; /* O Ponto Azul JTP */
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 75, 142, 0.8);
+}
+
+.tag-text {
+    font-size: 0.85rem;
+    color: #a1a1aa; /* Cinza */
+    font-weight: 500;
+}
+
+.project-desc {
+    font-size: 0.95rem;
+    color: #71717a;
+    line-height: 1.5;
+}
+
+/* Botões do Carrossel (Escondidos no Desktop) */
+.carousel-btn {
+    display: none; /* Padrão desktop: não mostra */
+    background: #004B8E;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* --- BOTÃO "VISITAR" NA IMAGEM DO CARD --- */
+.visit-btn {
+    position: absolute;
+    bottom: 15px; /* Distância do fundo */
+    right: 15px;  /* Distância da direita */
+    
+    /* Estilo do Botão */
+    background-color: #004B8E; /* Azul JTP */
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px; /* Redondinho */
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    
+    /* Flex para alinhar texto e ícone */
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6); /* Sombra para destacar da imagem */
+    z-index: 5;
+    
+    /* --- ESTADO INICIAL (DESKTOP) --- */
+    /* Começa invisível e levemente deslocado para baixo */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Ícone da seta dentro do botão */
+.visit-btn svg {
+    transition: transform 0.3s ease;
+}
+
+/* --- QUANDO PASSA O MOUSE (HOVER NO CARD) --- */
+.project-card:hover .visit-btn {
+    opacity: 1; /* Aparece */
+    transform: translateY(0); /* Sobe para posição original */
+}
+
+.project-card:hover .visit-btn svg {
+    transform: translate(2px, -2px);  
+}
+
+
+
+/* --- MODO CLARO (LIGHT MODE) --- */
+body.light-mode .visit-btn {
+    background-color: #004B8E; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+body.light-mode .projects-section {
+    background-color: #ffffff; 
+}
+
+body.light-mode .project-card {
+    background-color: #f7f7f7;
+    border-color: rgba(0,0,0,0.1);
+}
+
+body.light-mode .project-title {
+    color: #010528; 
+}
+
+body.light-mode .project-desc, 
+body.light-mode .tag-text {
+    color: #555560;
+}
+
+
 
 
 
@@ -677,8 +879,8 @@ body.light-mode .card-icon {
   border-radius: 50%;
   background-color: #00c9a7; /* Mesma cor do botão */
   opacity: 0.6;
-  z-index: -1; /* Fica atrás do botão principal */
-  animation: pulse-ring 2s infinite; /* Animação infinita de 2 segundos */
+  z-index: -1; 
+  animation: pulse-ring 2s infinite; 
 }
 
 
@@ -689,8 +891,8 @@ body.light-mode .card-icon {
       opacity: 0.6;
     }
     100% {
-      transform: scale(1.6); /* Expands to 1.6x do tamanho */
-      opacity: 0; /* Desaparece */
+      transform: scale(1.6);
+      opacity: 0; 
     }
   }
 
@@ -724,6 +926,48 @@ body.light-mode .card-icon {
 
 
   /* Responsividade */
+  @media (max-width: 900px) {
+
+    .projects-track {
+        display: flex;
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory; 
+        scroll-behavior: smooth;
+        gap: 0; 
+        
+        /* Esconde a barra de rolagem */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE */
+    }
+    
+    .projects-track::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    /* O Card ocupa 100% da largura no mobile */
+    .project-card {
+        min-width: 100%; 
+        scroll-snap-align: center; 
+        margin-right: 20px; 
+        &:last-child { margin-right: 0; }
+    }
+
+    /* Mostra os botões de seta */
+    .carousel-btn {
+        display: flex;
+        position: absolute;
+        top: 40%; 
+    }
+    .prev-btn { left: -10px; }
+    .next-btn { right: -10px; }
+
+    .visit-btn {
+        opacity: 1 !important; /* Força visibilidade */
+        transform: translateY(0) !important; /* Posição fixa */
+        background-color: rgba(0, 75, 142, 0.9); /* Um pouco transparente no mobile fica chique */
+    }
+}
+
 
   /* Ajuste para Mobile */
   @media (max-width: 768px) {

@@ -55,4 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
             body.style.overflow = 'auto';
         });
     });
+
+
+    // --- LÓGICA DO CARROSSEL DE PROJETOS (MOBILE) ---
+    const track = document.querySelector('.projects-track');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (track && prevBtn && nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            // Rola para a direita a largura de um card (aproximada)
+            track.scrollBy({ left: track.offsetWidth, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            // Rola para a esquerda
+            track.scrollBy({ left: -track.offsetWidth, behavior: 'smooth' });
+        });
+    }
 });
