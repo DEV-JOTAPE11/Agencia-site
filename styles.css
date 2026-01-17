@@ -24,7 +24,6 @@ html {
 
 /* --- RESET PARA LINKS SEM CLASSE E SEM ID --- */
 
-
 body.light-mode {
   --bg-primary: #f0f2f5;
   --text-primary: #010528;
@@ -90,7 +89,7 @@ body.light-mode {
 
 .glass-header.scrolled {
   background: rgba(0, 0, 0, 0.4); /* Fundo preto transparente */
-  backdrop-filter: blur(12px);    /* O desfoque (blur) */
+  backdrop-filter: blur(12px); /* O desfoque (blur) */
   -webkit-backdrop-filter: blur(12px); /* Para Safari */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
@@ -302,7 +301,7 @@ body.light-mode .img-dark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; 
+  gap: 10px;
 
   padding: 14px 32px;
   border-radius: 50px;
@@ -385,154 +384,291 @@ body.light-mode .img-dark {
 
 /* 7. Scroll Indicator */
 .scroll-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    color: #71717a; 
-    font-size: 0.8rem;
-    animation: bounce 2s infinite;
-    cursor: pointer;
-    
-    
-    text-decoration: none; 
-    transition: color 0.3s; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #71717a;
+  font-size: 0.8rem;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .scroll-indicator:hover {
-    color: #ffffff; 
+  color: #ffffff;
 }
 
+/* --- SEÇÃO SERVIÇOS --- */
+.services-section {
+  width: 100%;
+  padding: 80px 20px;
 
+  background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* Cabeçalho da Seção */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  color: #00c9a7; /* Ciano JTP */
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.section-description {
+  color: #a1a1aa;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Grid Layout */
+.services-grid {
+  display: grid;
+  /* Cria colunas automáticas (minimo 320px) */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* --- ESTILO DO CARD --- */
+.service-card {
+  /* Fundo cinza bem escuro para destacar do preto total */
+  background-color: #0a0a0c;
+  border: 1px solid rgba(0, 75, 142, 0.5); /* Borda bem sutil */
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative; /* Para posicionar o badge */
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 75, 142, 0.5); /* Azul JTP no hover */
+}
+
+/* Ícone */
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 75, 142, 0.15); /* Fundo azul transparente */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #00c9a7; /* Ícone Ciano */
+}
+
+/* Textos do Card */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #a1a1aa; /* Cinza texto */
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1; /* Empurra o preço para o final */
+}
+
+.card-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #00c9a7; /* Preço em destaque */
+}
+
+/* --- DESTAQUE "POPULAR" --- */
+.service-card.popular {
+  /* Borda azul brilhante fixa */
+  border: 1px solid #004b8e;
+  /* Sombra azul suave */
+  box-shadow: 0 0 30px rgba(0, 75, 142, 0.15);
+  background: linear-gradient(180deg, rgba(0, 75, 142, 0.05) 0%, #0a0a0c 100%);
+}
+
+.card-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px; /* Ou left: 50% + transform: translateX(-50%) para centralizar */
+  background: #004b8e; /* Fundo azul JTP */
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
 
 
 
 /* --- BOTÃO FLUTUANTE WHATSAPP --- */
 .whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 64px;  /* Tamanho do botão */
-    height: 64px;
-    /* Cor Azul Ciano Claro para destacar do fundo escuro */
-    background-color: #007eec; 
-    color: white; /* Cor do ícone */
-    border-radius: 50%; /* Redondo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 201, 167, 0.5); /* Sombra brilhante */
-    z-index: 1000; /* Fica acima de tudo */
-    transition: all 0.3s ease;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 64px; /* Tamanho do botão */
+  height: 64px;
+  /* Cor Azul Ciano Claro para destacar do fundo escuro */
+  background-color: #007eec;
+  color: white; /* Cor do ícone */
+  border-radius: 50%; /* Redondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 201, 167, 0.5); /* Sombra brilhante */
+  z-index: 1000; /* Fica acima de tudo */
+  transition: all 0.3s ease;
 }
 
 /* Tamanho do ícone SVG dentro do botão */
 .whatsapp-float svg {
-    width: 38px;
-    height: 38px;
-    fill: currentColor;
+  width: 38px;
+  height: 38px;
+  fill: currentColor;
 }
 
 /* Efeito ao passar o mouse */
 .whatsapp-float:hover {
-    transform: scale(1.1); /* Aumenta um pouco */
-    background-color: #20E3B2; /* Fica ligeiramente mais claro */
+  transform: scale(1.1); /* Aumenta um pouco */
+  background-color: #20e3b2; /* Fica ligeiramente mais claro */
 }
 
 /* --- ANIMAÇÃO DE "PULSO" --- */
 /* Cria um anel que se expande atrás do botão */
 .whatsapp-float::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #00C9A7; /* Mesma cor do botão */
-    opacity: 0.6;
-    z-index: -1; /* Fica atrás do botão principal */
-    animation: pulse-ring 2s infinite; /* Animação infinita de 2 segundos */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #00c9a7; /* Mesma cor do botão */
+  opacity: 0.6;
+  z-index: -1; /* Fica atrás do botão principal */
+  animation: pulse-ring 2s infinite; /* Animação infinita de 2 segundos */
 }
 
-/* Os passos da animação */
-@keyframes pulse-ring {
+
+  /* Os passos da animação */
+  @keyframes pulse-ring {
     0% {
-        transform: scale(1);
-        opacity: 0.6;
+      transform: scale(1);
+      opacity: 0.6;
     }
     100% {
-        transform: scale(1.6); /* Expands to 1.6x do tamanho */
-        opacity: 0; /* Desaparece */
+      transform: scale(1.6); /* Expands to 1.6x do tamanho */
+      opacity: 0; /* Desaparece */
     }
-}
-
-/* Animações */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-5px);
-  }
-  60% {
-    transform: translateY(-3px);
-  }
-}
-
-
-
-/* Ajuste para Mobile */
-@media (max-width: 768px) {
-  .logo img {
-    height: 40px;
   }
 
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  .hero-stats {
-    gap: 15px;
-  }
-  .stat-value {
-    font-size: 1.2rem;
-  }
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-  .btn {
-    width: 100%;
+  /* Animações */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-   .whatsapp-float {
-        bottom: 20px;
-        right: 20px;
-        width: 58px;
-        height: 58px;
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-5px);
+    }
+    60% {
+      transform: translateY(-3px);
+    }
+  }
+
+
+  /* Responsividade */
+
+  /* Ajuste para Mobile */
+  @media (max-width: 768px) {
+    .logo img {
+      height: 40px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-stats {
+      gap: 15px;
+    }
+    .stat-value {
+      font-size: 1.2rem;
+    }
+    .hero-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+    .btn {
+      width: 100%;
+    }
+
+    .whatsapp-float {
+      bottom: 20px;
+      right: 20px;
+      width: 58px;
+      height: 58px;
     }
     .whatsapp-float svg {
-        width: 34px;
-        height: 34px;
+      width: 34px;
+      height: 34px;
     }
-}
+
+    .section-title {
+      font-size: 2rem;
+    }
+    .services-grid {
+      grid-template-columns: 1fr; /* 1 coluna no celular */
+    }
+  }
+
 
 .desktop-nav {
   display: none;
